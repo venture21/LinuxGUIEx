@@ -1,5 +1,6 @@
 import math
 
+from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QApplication, QGridLayout, QLayout, QLineEdit,
         QSizePolicy, QToolButton, QWidget)
@@ -11,10 +12,11 @@ class Button(QToolButton):
 
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.setText(text)
+         
 
     def sizeHint(self):
         size = super(Button, self).sizeHint()
-        size.setHeight(size.height() + 20)
+        size.setHeight(size.height() + 30)
         size.setWidth(max(size.width(), size.height()))
         return size
 
@@ -146,6 +148,8 @@ class Calculator(QWidget):
 
     def createButton(self, text, member):
         button = Button(text)
+        font=QtGui.QFont()
+        button.setfont(font)
         button.clicked.connect(member)
         return button   
 
