@@ -26,6 +26,8 @@ class Calculator(QWidget):
         super(Calculator, self).__init__(parent)
 
         self.pendingAdditiveOperator = ''
+        self.pendingMultiplicativeOperator = ''
+        self.waitingForOperand = True
 
         #QLineEdit Properties
         self.display = QLineEdit('0')
@@ -146,6 +148,23 @@ class Calculator(QWidget):
         button = Button(text)
         button.clicked.connect(member)
         return button   
+
+    def calculate(self, rightOperand, pendingOperator):
+        if pendingOperator == "+":
+            self.sumSoFar += rightOperand
+        elif pendingOperator == "-":
+            self.sumSoFar -= rightOperand
+        elif pendingOperator == u"\N{MULTIPLICATION SIGN}":
+            self.factorSoFar *= rightOperand
+        elif pendingOperator == u"\N{DIVISION SIGN}":
+            if rightOperand == 0.0:
+                return False
+
+            self.factorSoFar /= rightOperand
+
+        return True
+
+
 
 if __name__ == '__main__':
 
