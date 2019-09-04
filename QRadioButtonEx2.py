@@ -16,6 +16,7 @@ class MyApp(QMainWindow):
         self.rbtn1 = QRadioButton('First Button', self)
         self.rbtn1.move(50, 50)
         self.rbtn1.setChecked(True)
+        self.rbtn1.resize(200,40)
         self.rbtn1.clicked.connect(self.rbtnClicked)
 
         self.rbtn2 = QRadioButton(self)
